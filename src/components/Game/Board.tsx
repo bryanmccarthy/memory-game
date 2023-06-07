@@ -12,11 +12,17 @@ export default function Board({ cards, setCards }: BoardProps) {
     <div className="Board">
       {
         cards.map((card, idx) => (
-          <div className="Card" key={idx}>
-            {card.id}
-          </div>
+          <div 
+            style={ card.flipped ? { backgroundColor: card.color } : cardStyle} 
+            className="Card"
+            key={idx}
+          ></div>
         ))
       }
     </div>
   )
 }
+
+const cardStyle = {
+  backgroundColor: 'white',
+};

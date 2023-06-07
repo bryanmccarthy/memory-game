@@ -1,5 +1,4 @@
 .Board {
-  border: 1px solid gold;
   width: 40em;
   height: 40em;
   display: grid;
@@ -7,6 +6,7 @@
 }
 
 .Card {
-  border: 1px solid purple;
-  margin: 3px;
+  border-radius: 3px;
+  margin: 4px;
+  cursor: pointer;
 }
