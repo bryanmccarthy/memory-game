@@ -1,5 +1,6 @@
 import './Board.css';
 import { Card } from '../../types/Card';
+import { useState } from 'react';
 
 type BoardProps = {
   cards: Card[];
@@ -7,6 +8,18 @@ type BoardProps = {
 }
 
 export default function Board({ cards, setCards }: BoardProps) {
+
+  function handleCardFlip(card: Card) {
+    let newCards = [...cards];
+
+    for(let i = 0; i < newCards.length; i++) {
+      if(newCards[i].id === card.id) {
+        newCards[i].flipped = true;
+      }
+    }
+
+    setCards(newCards);
+  }
 
   return (
     <div className="Board">
@@ -16,6 +29,7 @@ export default function Board({ cards, setCards }: BoardProps) {
             style={ card.flipped ? { backgroundColor: card.color } : cardStyle} 
             className="Card"
             key={idx}
+            onClick={() => handleCardFlip(card)}
           ></div>
         ))
       }
