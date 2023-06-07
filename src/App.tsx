@@ -2,15 +2,14 @@ import './App.css';
 import Header from './components/Header';
 import Game from './components/Game/Game';
 import { useState } from 'react';
-import cardset from './cardset';
 
 function App() {
-  const [cards, setCards] = useState(cardset);
+  const [pairs, setPairs] = useState(0);
 
   return (
     <div className="App">
-      <Header />
-      <Game />
+      <Header pairs={pairs} />
+      <Game setPairs={setPairs} />
     </div>
   );
 }

@@ -1,11 +1,17 @@
 import './Header.css';
 
-export default function Header() {
+type HeaderProps = {
+  pairs: number;
+}
+
+export default function Header({ pairs }: HeaderProps) {
 
   return (
     <div className="Header">
       <p>timer</p>
-      <p>Pairs</p>
+      <div className="Pairs">
+        <p>Pairs: {pairs}/18</p>
+      </div>
     </div>
   )
 }
