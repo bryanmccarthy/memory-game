@@ -68,11 +68,11 @@ export default function Board({ cards, setCards, pairs, setPairs }: BoardProps) 
       {
         cards.map((card, idx) => (
           <div 
-            style={ card.flipped || card.matched ? { backgroundColor: card.color } : cardStyle} 
+            style={ card.matched ? { visibility: 'hidden' } : card.flipped ? { backgroundColor: card.color } : cardStyle } 
             className="Card"
             key={idx}
             onClick={() => handleCardFlip(card)}
-          >{card.color}</div>
+          ></div>
         ))
       }
     </div>

@@ -25,9 +25,18 @@ export default function Game({ pairs, setPairs }: GameProps) {
   }
 
   function handlePlayAgain() {
-    setCards(shuffleCards(cardset));
     setPairs(0);
-    // Fix colors showing
+    resetCards();
+  }
+
+  function resetCards() {
+    let newCards = [...cards];
+
+    for(let i = 0; i < newCards.length; i++) {
+      newCards[i].matched = false;
+    }
+
+    setCards(shuffleCards(newCards));
   }
 
   return (
