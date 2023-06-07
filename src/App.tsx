@@ -1,4 +1,6 @@
 import './App.css';
+import Header from './components/Header';
+import Game from './components/Game/Game';
 import { useState } from 'react';
 import cardset from './cardset';
 
@@ -7,7 +9,8 @@ function App() {
 
   return (
     <div className="App">
-      Memory Game
+      <Header />
+      <Game />
     </div>
   );
 }
