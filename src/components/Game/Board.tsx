@@ -1,13 +1,15 @@
 import './Board.css';
 import { Card } from '../../types/Card';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 type BoardProps = {
   cards: Card[];
   setCards: (cards: Card[]) => void;
+  pairs: number;
+  setPairs: (pair: number) => void;
 }
 
-export default function Board({ cards, setCards }: BoardProps) {
+export default function Board({ cards, setCards, pairs, setPairs }: BoardProps) {
   const [flipped, setFlipped] = useState<number>(0);
 
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -30,6 +32,7 @@ export default function Board({ cards, setCards }: BoardProps) {
           newCards[i].flipped = false;
         }
       }
+      setPairs(pairs + 1);
     } else {
       await sleep(1000);
       for(let i = 0; i < newCards.length; i++) {
@@ -69,7 +72,7 @@ export default function Board({ cards, setCards }: BoardProps) {
             className="Card"
             key={idx}
             onClick={() => handleCardFlip(card)}
-          ></div>
+          >{card.color}</div>
         ))
       }
     </div>
@@ -78,4 +81,5 @@ export default function Board({ cards, setCards }: BoardProps) {
 
 const cardStyle = {
   backgroundColor: 'white',
+  color: 'black'
 };

@@ -8,7 +8,9 @@ export default function Header({ pairs }: HeaderProps) {
 
   return (
     <div className="Header">
-      <p>timer</p>
+      <div className="Timer">
+        timer
+      </div>
       <div className="Pairs">
         <p>Pairs: {pairs}/18</p>
       </div>

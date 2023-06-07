@@ -1,10 +1,18 @@
 import './GameOver.css';
 
-export default function GameOver() {
+type GameOverProps = {
+  handlePlayAgain: () => void;
+}
+
+export default function GameOver({ handlePlayAgain }: GameOverProps) {
 
   return (
     <div className="GameOver">
-      <h2>Game Over</h2>
+      <h2>Finished!</h2>
+      <p>Time: </p>
+      <p>High Score: </p>
+
+      <button className="PlayAgainButton" onClick={handlePlayAgain}>Play again</button>
     </div>
   )
 }

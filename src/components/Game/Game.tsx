@@ -5,13 +5,12 @@ import { useState } from 'react';
 import cardset from '../../cardset';
 import { Card } from '../../types/Card';
 
-const finished = false; // TODO: replace with state
-
 type GameProps = {
+  pairs: number;
   setPairs: (pairs: number) => void;
 }
 
-export default function Game({ setPairs }: GameProps) {
+export default function Game({ pairs, setPairs }: GameProps) {
   const [cards, setCards] = useState(shuffleCards(cardset));
 
   function shuffleCards(cardset: Card[]): Card[] {
@@ -25,13 +24,19 @@ export default function Game({ setPairs }: GameProps) {
     return shuffled;
   }
 
+  function handlePlayAgain() {
+    setCards(shuffleCards(cardset));
+    setPairs(0);
+    // Fix colors showing
+  }
+
   return (
     <div className="Game">
       { 
-        finished ?
-          <GameOver />
+        pairs === 18 ?
+          <GameOver handlePlayAgain={handlePlayAgain} />
         :
-          <Board cards={cards} setCards={setCards} />
+          <Board cards={cards} setCards={setCards} pairs={pairs} setPairs={setPairs} />
       }
     </div>
   )
