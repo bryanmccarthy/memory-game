@@ -2,4 +2,11 @@
   border: 1px solid gold;
   width: 40em;
   height: 40em;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+
+.Card {
+  border: 1px solid purple;
+  margin: 3px;
 }

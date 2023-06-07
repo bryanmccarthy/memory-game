@@ -10,10 +10,11 @@ export default function Board({ cards, setCards }: BoardProps) {
 
   return (
     <div className="Board">
-      <h2>Board</h2>
       {
         cards.map((card, idx) => (
-          <div className="Card" key={idx}>{card.id}</div>
+          <div className="Card" key={idx}>
+            {card.id}
+          </div>
         ))
       }
     </div>
