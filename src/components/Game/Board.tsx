@@ -1,6 +1,6 @@
 import './Board.css';
 import { Card } from '../../types/Card';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type BoardProps = {
   cards: Card[];
@@ -8,6 +8,39 @@ type BoardProps = {
 }
 
 export default function Board({ cards, setCards }: BoardProps) {
+  const [flipped, setFlipped] = useState<number>(0);
+
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+  async function checkForMatch() {
+    let flippedCards = [];
+
+    for(let i = 0; i < cards.length; i++) {
+      if(cards[i].flipped === true) {
+        flippedCards.push(cards[i]);
+      }
+    }
+
+    let newCards = [...cards];
+
+    if(flippedCards[0].color === flippedCards[1].color) {
+      for(let i = 0; i < newCards.length; i++) {
+        if(newCards[i].flipped === true) {
+          newCards[i].matched = true;
+          newCards[i].flipped = false;
+        }
+      }
+    } else {
+      await sleep(1000);
+      for(let i = 0; i < newCards.length; i++) {
+        if(newCards[i].flipped === true) {
+          newCards[i].flipped = false;
+        }
+      }
+    }
+
+    setFlipped(0);
+  }
 
   function handleCardFlip(card: Card) {
     let newCards = [...cards];
@@ -18,6 +51,12 @@ export default function Board({ cards, setCards }: BoardProps) {
       }
     }
 
+    if(flipped === 1) {
+      checkForMatch();
+    } else {
+      setFlipped(1);
+    }
+
     setCards(newCards);
   }
 
@@ -26,7 +65,7 @@ export default function Board({ cards, setCards }: BoardProps) {
       {
         cards.map((card, idx) => (
           <div 
-            style={ card.flipped ? { backgroundColor: card.color } : cardStyle} 
+            style={ card.flipped || card.matched ? { backgroundColor: card.color } : cardStyle} 
             className="Card"
             key={idx}
             onClick={() => handleCardFlip(card)}
