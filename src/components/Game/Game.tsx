@@ -1,10 +1,18 @@
 import './Game.css';
+import Board from './Board';
+
+const finished = false; // TODO: replace with state
 
 export default function Game() {
 
   return (
     <div className="Game">
-      <h2>Game</h2>
+      { 
+        finished ?
+          <p>Game Over!</p>
+        :
+          <Board />
+      }
     </div>
   )
 }
