@@ -9,11 +9,12 @@ export default function GameOver({ handlePlayAgain, timer }: GameOverProps) {
 
   function formatTime(time: number) {
     const mins = Math.floor(time / 60);
-    const secs = time % 60;
+    const seconds = time % 60;
 
-    if(mins === 0) return `${secs} seconds`;
+    if(mins === 0) return `${seconds} seconds`;
+    if(mins === 1) return `${mins} min ${seconds} seconds`
 
-    return `${mins} mins ${secs} seconds`;
+    return `${mins} mins ${seconds} seconds`;
   }
 
   return (

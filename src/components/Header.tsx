@@ -11,13 +11,21 @@ export default function Header({ pairs, timer }: HeaderProps) {
     const mins = Math.floor(timer / 60 );
     const seconds = timer % 60;
 
-    return `${mins}:${seconds}`;
+    if(mins === 0) return `${seconds} seconds`;
+    if(mins === 1) return `${mins} min ${seconds} seconds`
+
+    return `${mins} mins ${seconds} seconds`;
   }
 
   return (
     <div className="Header">
       <div className="Timer">
-        {formatTimer(timer)}
+        {
+          timer > 0 ?
+            formatTimer(timer)
+          :
+            <p className="Instruction">Click a card to start</p> 
+        }
       </div>
       <div className="Pairs">
         <p>Pairs: {pairs}/18</p>

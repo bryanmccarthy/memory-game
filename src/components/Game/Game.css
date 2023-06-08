@@ -1,4 +1,6 @@
 .Game {
+  border-radius: 10px;
+  box-shadow: 0 0 5px 0 #fff;
   height: 42em;
   width: 42em;
   display: flex;
