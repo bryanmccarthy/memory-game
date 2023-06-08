@@ -7,13 +7,21 @@ type BoardProps = {
   setCards: (cards: Card[]) => void;
   pairs: number;
   setPairs: (pair: number) => void;
+  timer: number;
   setActive: (active: boolean) => void;
 }
 
-export default function Board({ cards, setCards, pairs, setPairs, setActive }: BoardProps) {
+export default function Board({ cards, setCards, pairs, setPairs, timer, setActive }: BoardProps) {
   const [flipped, setFlipped] = useState<number>(0);
 
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+  function checkForHighscore() {
+    if(timer < Number(localStorage.getItem('highscore')) || !localStorage.getItem('highscore')) {
+      localStorage.setItem('highscore', String(timer));
+    }
+    setActive(false);
+  }
 
   async function checkForMatch() {
     let flippedCards = [];
@@ -33,6 +41,11 @@ export default function Board({ cards, setCards, pairs, setPairs, setActive }: B
           newCards[i].flipped = false;
         }
       }
+
+      if(pairs == 17) {
+        checkForHighscore();
+      }
+
       setPairs(pairs + 1);
     } else {
       await sleep(1000);

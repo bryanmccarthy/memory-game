@@ -20,12 +20,12 @@ function App() {
     }
 
     return () => clearInterval(interval);
-  }, [active])
+  }, [active]);
 
   return (
     <div className="App">
       <Header pairs={pairs} timer={timer} />
-      <Game pairs={pairs} setPairs={setPairs} setActive={setActive} />
+      <Game pairs={pairs} setPairs={setPairs} timer={timer} setTimer={setTimer} setActive={setActive} />
     </div>
   );
 }
