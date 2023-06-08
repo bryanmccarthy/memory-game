@@ -7,9 +7,10 @@ type BoardProps = {
   setCards: (cards: Card[]) => void;
   pairs: number;
   setPairs: (pair: number) => void;
+  setActive: (active: boolean) => void;
 }
 
-export default function Board({ cards, setCards, pairs, setPairs }: BoardProps) {
+export default function Board({ cards, setCards, pairs, setPairs, setActive }: BoardProps) {
   const [flipped, setFlipped] = useState<number>(0);
 
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -46,6 +47,7 @@ export default function Board({ cards, setCards, pairs, setPairs }: BoardProps) 
   }
 
   function handleCardFlip(card: Card) {
+    setActive(true);
     let newCards = [...cards];
 
     for(let i = 0; i < newCards.length; i++) {

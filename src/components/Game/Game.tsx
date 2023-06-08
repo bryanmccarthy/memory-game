@@ -8,9 +8,10 @@ import { Card } from '../../types/Card';
 type GameProps = {
   pairs: number;
   setPairs: (pairs: number) => void;
+  setActive: (active: boolean) => void;
 }
 
-export default function Game({ pairs, setPairs }: GameProps) {
+export default function Game({ pairs, setPairs, setActive }: GameProps) {
   const [cards, setCards] = useState(shuffleCards(cardset));
 
   function shuffleCards(cardset: Card[]): Card[] {
@@ -45,7 +46,7 @@ export default function Game({ pairs, setPairs }: GameProps) {
         pairs === 18 ?
           <GameOver handlePlayAgain={handlePlayAgain} />
         :
-          <Board cards={cards} setCards={setCards} pairs={pairs} setPairs={setPairs} />
+          <Board cards={cards} setCards={setCards} pairs={pairs} setPairs={setPairs} setActive={setActive} />
       }
     </div>
   )
